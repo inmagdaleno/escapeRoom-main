@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escape de Isla Kaimana</title>
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Barrio&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+
+<body>
+  <!-- Pantalla de Bienvenida -->
+  <section id="pantalla-bienvenida" class="pantalla visible">
+       <div class="contenido">
+          <h1 class="texto">La Isla Efímera</h1>
+          <p>Despiertas en la arena húmeda de una isla paradisiaca y desconocida. No recuerdas cómo has llegado hasta allí. Te levantas desorientado, cegado por el reflejo del sol sobre el agua cristalina...</p>
+          <button id="btn-comenzar">COMIENZA LA AVENTURA</button>
+      </div>
+  </section>
+
+  <!-- Escena Playa -->
+  <section id="escena-playa" class="pantalla">
+    <div class="contenido">
+      <h2>La Playa</h2>
+      <p>Encuentras una botella medio enterrada en la arena. Parece contener algo dentro, algo como un pergamino. Junto a ella también encuentras un diario de navegación mojado por las olas.</p>
+      <button id="btn-ver-papel">Examina la botella</button>
+    </div>
+
+      <!-- Modal para el puzzle 1 -->
+      <div id="modal1" class="modal">
+        <div class="modal-contenido">
+          <img id="pergamino-img" src="img/pergaminoOK.png" alt="Pergamino antiguo con un mensaje cifrado">
+          <span class="cerrar" id="cerrar-modal-puzzle1">&times;</span>
+          <div class="pergamino-container">
+            <input type="text" id="respuesta-puzzle1" placeholder="Introduce la respuesta" />
+            <button id="btn-resolver-puzzle1">Resolver</button>
+            <div class="feedback"><p id="feedback-puzzle1"></p></div>
+          </div>
+      </div>
+
+      <!-- Pantalla Jungla-->
+      <section id="escena-diario" class="pantalla">
+        <div class="diario">
+
+
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrambleTextPlugin.min.js"></script>
+
+  <script src="js/funciones.js"></script>
+  <script src="js/gsap.js"></script>
+</body>
+</html>
