@@ -24,15 +24,15 @@ function redirigirConMensaje($url, $success, $mensaje){
 
 //Inicio de sesión
 if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
     
     $resultado = $usuariobd->verificarCredenciales($email, $password);
     $_SESSION['logueado'] = $resultado['success'];
 
     if($resultado['success']){
         $_SESSION['usuario'] = $resultado['usuario'];
-        $ruta = '../admin/index.php';
+        $ruta = '../index.html';
     }else{
         $ruta = '../admin/login.php';
     }
@@ -46,8 +46,8 @@ if(
     && isset($_POST['email'])
     && isset($_POST['password'])
     ){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
     $resultado = $usuariobd->registrarUsuario($email, $password);
 

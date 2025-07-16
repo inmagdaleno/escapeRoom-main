@@ -23,7 +23,7 @@ if ($host === 'localhost' ||
     define('DB_USER', 'root');
     define('DB_PASS', '');
     define('DB_NAME', 'escaperoom');
-    define('URL_ADMIN','http://localhost/escaperoom');
+    define('URL_ADMIN','http://localhost/escaperoom-main/admin/');
 } else {
     //echo 'Entorno de producción en la nube';
     // Configuración para producción
@@ -31,5 +31,5 @@ if ($host === 'localhost' ||
     define('DB_USER', 'dbu2612576');
     define('DB_PASS', 'Inma014%');
     define('DB_NAME', 'dbs14399115');
-    define('URL_ADMIN','http://www.alumnainma.com/escaperoom');
+    define('URL_ADMIN','http://www.alumnainma.com/escaperoom-main/admin');
 }
