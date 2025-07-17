@@ -360,4 +360,33 @@ public function restablecerPassword($token, $nueva_password){
         //todo generar token más robusto
         return bin2hex(random_bytes(32));
     }
+
+    /**
+     * Guarda los resultados de una partida en la base de datos
+     */
+    public function guardarPartida($id_usuario, $modo_juego, $puntuacion_final, $tiempo_restante_final, $pistas_usadas, $resultado){
+        $sql = "INSERT INTO partida (id_usuario, modo_juego, puntuacion_final, tiempo_restante_final, pistas_usadas, resultado, fecha_partida) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+        $stmt = $this->db->prepare($sql);
+
+        if ($stmt) {
+            // Determinar los tipos de parámetros dinámicamente
+            $types = "isiiis"; // id_usuario (int), modo_juego (string), puntuacion_final (int), tiempo_restante_final (int), pistas_usadas (int), resultado (int)
+
+            // Manejar valores NULL para puntuacion_final y tiempo_restante_final
+            $puntuacion_bind = ($puntuacion_final !== null) ? $puntuacion_final : null;
+            $tiempo_bind = ($tiempo_restante_final !== null) ? $tiempo_restante_final : null;
+
+            $stmt->bind_param($types, $id_usuario, $modo_juego, $puntuacion_bind, $tiempo_bind, $pistas_usadas, $resultado);
+
+            if ($stmt->execute()) {
+                $stmt->close();
+                return ["success" => true, "mensaje" => "Partida guardada correctamente."];
+            } else {
+                $stmt->close();
+                return ["success" => false, "mensaje" => "Error al guardar la partida: " . $stmt->error];
+            }
+        } else {
+            return ["success" => false, "mensaje" => "Error en la preparación de la consulta: " . $this->db->error];
+        }
+    }
 }

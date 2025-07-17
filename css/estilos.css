@@ -31,14 +31,20 @@ body {
   display: flex;
 }
 
-
 #pantalla-bienvenida {
   background-image: url('../img/paisaje-tropical-soleado.jpg');
   background-size: cover;
   background-position: center;
 }
 
-#pantalla-bienvenida .contenido {
+#pantalla-modo-juego {
+  background-image: url('../img/atardecer.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+#pantalla-bienvenida .contenido,
+#pantalla-modo-juego .contenido {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(10px);
@@ -48,8 +54,9 @@ body {
   padding: 40px;
   color: #1a1a1a;
   max-width: 600px;
-
+  position: relative; /* Añadido para posicionamiento absoluto del canvas */
 }
+
 
 h1 {
   font-family: "Barriecito", system-ui;
@@ -57,6 +64,28 @@ h1 {
   font-weight: 800;
   color: #1a1a1a;
   margin-bottom: 30px;
+}
+
+/* Estilos para el canvas de la animación de partículas */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  /* El tamaño del canvas se ajustará dinámicamente en JS */
+}
+
+/* El h1#text ahora es el elemento sobre el que se dibuja la animación */
+#text {
+  /* Mantener los estilos originales del h1 */
+  font-family: "Barriecito", system-ui;
+  font-size: 48px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  pointer-events: none; /* Para que el mouseenter/mouseleave funcione en el canvas */
+  position: relative; /* Para que el canvas se posicione en relación a él */
+  z-index: 1; /* Asegura que el texto esté por encima del canvas si es necesario */
 }
 
 .contenido {
@@ -90,7 +119,6 @@ h2 {
   color: #1a1a1a;
   margin-bottom: 30px;
 }
-
 
 button {
   background: linear-gradient(45deg, #ff00f0, #00ffbf);
@@ -151,9 +179,6 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  
-  
 }
 
 input[type="text"] {
@@ -181,7 +206,7 @@ input[type="text"] {
   padding: 10px;
   box-sizing: border-box;
 }
-  
+
 .modal-contenido input[type="text"] + button {
     margin-top: 24px;
 }
@@ -249,6 +274,22 @@ input[type="text"] {
   position: fixed;
   top: 20px;
   left: 20px;
+  background: linear-gradient(45deg, #ff00f0, #00ffbf);
+  background-size: 200% 200%;
+  animation: animated-gradient 3s ease-in-out infinite;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(107, 107, 107, 0.5);
+}
+
+#timer-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(45deg, #ff00f0, #00ffbf);
   background-size: 200% 200%;
   animation: animated-gradient 3s ease-in-out infinite;

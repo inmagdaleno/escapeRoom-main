@@ -19,14 +19,28 @@
 <body>
   <!-- Score Display -->
   <div id="score-container">Puntuación: <span id="score">100</span></div>
+  <div id="timer-container" style="display: none;">Tiempo: <span id="timer">30:00</span></div>
 
   <!-- Pantalla de Bienvenida -->
   <section id="pantalla-bienvenida" class="pantalla visible">
        <div class="contenido">
+          <canvas id="canvas"></canvas>
+          <h1 id="text" class="texto">La Isla Efímera</h1>
+          
           <h1 class="texto">La Isla Efímera</h1>
           <p>Despiertas en la arena húmeda de una isla paradisiaca y desconocida. No recuerdas cómo has llegado hasta allí. Te levantas desorientado, cegado por el reflejo del sol sobre el agua cristalina...</p>
           <button id="btn-comenzar">Comienza la aventura</button>
       </div>
+  </section>
+
+  <!-- Pantalla de Selección de Modo de Juego -->
+  <section id="pantalla-modo-juego" class="pantalla">
+    <div class="contenido">
+      <h2>Elige tu Aventura</h2>
+      <p>¿Cómo quieres poner a prueba tus habilidades?</p>
+      <button id="btn-modo-puntuacion">Modo Puntuación</button>
+      <button id="btn-modo-tiempo">Modo Contrarreloj</button>
+    </div>
   </section>
 
   <!-- Escena Playa -->
