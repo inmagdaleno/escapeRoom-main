@@ -3,6 +3,18 @@ body {
   font-family: sans-serif;
 }
 
+@keyframes animated-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .pantalla {
   display: none;
   justify-content: center;
@@ -66,7 +78,7 @@ h1 {
 }
 
 #escena-playa {
-  background-image: url('../img/_e0483e08-ebb5-45bf-9307-807a0903f9ca.jpeg');
+  background-image: url('../img/botella.jpeg');
   background-size: cover;
   background-position: center;
 }
@@ -81,24 +93,23 @@ h2 {
 
 
 button {
-  background-color: #6a7bff;
+  background: linear-gradient(45deg, #ff00f0, #00ffbf);
+  background-size: 200% 200%;
+  color: white;
   border: none;
-  padding: 14px 28px;
-  color: #efefef;
-  font-family: "Barriecito", system-ui;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-  margin-top: 20px;
+  padding: 12px 24px;
   border-radius: 8px;
-  box-shadow: 11px 13px 32px 0px rgba(94,93,93,0.75);
-  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 10px rgba(107, 107, 107, 0.5);
+  font-size: 16px;
 }
 
 button:hover {
-  background-color: #2949ff;
-  transform: scale(1.05);
-  box-shadow: 14px 16px 35px 0px rgba(94,93,93,0.9);
+  background-position: 100% 100%;
+  transform: translateY(-2px);
+  color: #e7fef6;
 }
 
 .modal {
@@ -169,7 +180,10 @@ input[type="text"] {
   align-items: center;
   padding: 10px;
   box-sizing: border-box;
+}
   
+.modal-contenido input[type="text"] + button {
+    margin-top: 24px;
 }
 
 .modal .cerrar {
@@ -229,4 +243,89 @@ input[type="text"] {
   background-color: #2949ff;
   transform: scale(1.05);
   box-shadow: 14px 16px 35px 0px rgba(94,93,93,0.9);
+}
+
+#score-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(45deg, #ff00f0, #00ffbf);
+  background-size: 200% 200%;
+  animation: animated-gradient 3s ease-in-out infinite;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(107, 107, 107, 0.5);
+}
+
+.btn-pista-extra-estilo {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #6a7bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.btn-pista-extra-estilo:hover {
+  background-color: #2949ff;
+  transform: scale(1.1);
+}
+
+#botones-pista-container {
+    display: flex;
+    flex-direction: column; /* Apila los botones verticalmente */
+    gap: 15px;
+    margin-top: 20px;
+    width: 80%; /* Ajusta el ancho del contenedor */
+    max-width: 300px; /* Limita el ancho máximo */
+}
+
+.btn-pista-primario, .btn-pista-secundario {
+    width: 100%; /* Ambos botones ocupan el ancho completo del contenedor */
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba(107, 107, 107, 0.5);
+    font-size: 16px;
+    border: none;
+}
+
+.btn-pista-primario {
+    background: linear-gradient(45deg, #ff00f0, #00ffbf);
+    background-size: 200% 200%;
+    color: white;
+}
+
+.btn-pista-primario:hover {
+    background-position: 100% 100%;
+    transform: translateY(-2px);
+    color: #e7fef6;
+}
+
+.btn-pista-secundario {
+    backdrop-filter: blur(6px) saturate(180%);
+    background: rgba(255, 255, 255, 0.1);
+    color: #3b3b3b;
+}
+
+.btn-pista-secundario:hover {
+    background: linear-gradient(45deg, #ff00f0, #00ffbf);
+    transform: translateY(-2px);
+    color: #e7fef6;
 }
