@@ -5,8 +5,6 @@ define('MAIL_USER', 'info@aznaitin.es');
 define('MAIL_PASS', 'SanFermin$7_Marisol');
 define('DEBUG_MAIL', false);
 
-
-
 $host = $_SERVER['HTTP_HOST'];
 $serverName = $_SERVER['SERVER_NAME'];
 
@@ -17,7 +15,6 @@ if ($host === 'localhost' ||
     strpos($host, 'localhost:') === 0 ||
     strpos($host, '127.0.0.1:') === 0) {
     
-    //echo 'Entorno de desarrollo local';
     // Configuración para desarrollo
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
@@ -25,7 +22,6 @@ if ($host === 'localhost' ||
     define('DB_NAME', 'escaperoom');
     define('URL_ADMIN','http://localhost/escaperoom-main/admin/');
 } else {
-    //echo 'Entorno de producción en la nube';
     // Configuración para producción
     define('DB_HOST', 'db5018152554.hosting-data.io');
     define('DB_USER', 'dbu2612576');

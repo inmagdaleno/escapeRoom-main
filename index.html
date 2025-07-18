@@ -17,6 +17,60 @@
 </head>
 
 <body>
+  <!-- Botones de esquina superior derecha -->
+  <div class="esquina-superior-derecha">
+    <button id="btn-perfil" class="btn-icono-esquina" title="Perfil de Usuario">
+      <i class="fas fa-user"></i>
+    </button>
+    <button id="btn-ranking" class="btn-icono-esquina" title="Ranking">
+      <i class="fas fa-trophy"></i>
+    </button>
+  </div>
+
+  <!-- Modal para Perfil de Usuario -->
+  <div id="modal-perfil" class="modal modal-overlay">
+    <div class="modal-contenido">
+      <span class="cerrar" id="cerrar-modal-perfil">&times;</span>
+      <h2>Perfil de Usuario</h2>
+      <form id="form-perfil">
+        <div class="perfil-img-container">
+          <img id="perfil-img-preview" src="img/avatar.png" alt="Imagen de perfil">
+          <input type="file" id="input-perfil-img" accept="image/*" style="display: none;">
+          <button type="button" id="btn-cambiar-img" class="btn-pista-secundario">Cambiar Imagen</button>
+        </div>
+        <div class="form-grupo">
+          <label for="perfil-nombre">Nombre:</label>
+          <input type="text" id="perfil-nombre" name="nombre" placeholder="Tu nombre">
+        </div>
+        <div class="form-grupo">
+          <label for="perfil-email">Email:</label>
+          <input type="email" id="perfil-email" name="email" placeholder="Tu correo electrónico">
+        </div>
+        <button type="submit" id="btn-guardar-perfil" class="btn-pista-primario">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para Ranking -->
+  <div id="modal-ranking" class="modal modal-overlay">
+    <div class="modal-contenido">
+      <span class="cerrar" id="cerrar-modal-ranking">&times;</span>
+      <h2>Ranking de Jugadores</h2>
+      <table id="tabla-ranking">
+        <thead>
+          <tr>
+            <th>Puesto</th>
+            <th>Jugador</th>
+            <th>Puntuación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Las filas del ranking se insertarán aquí con JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- Score Display -->
   <div id="score-container">Puntuación: <span id="score">100</span></div>
   <div id="timer-container" style="display: none;">Tiempo: <span id="timer">30:00</span></div>
@@ -24,10 +78,10 @@
   <!-- Pantalla de Bienvenida -->
   <section id="pantalla-bienvenida" class="pantalla visible">
        <div class="contenido">
+          <!-- animación gsap dispersión -->
           <canvas id="canvas"></canvas>
           <h1 id="text" class="texto">La Isla Efímera</h1>
-          
-          <h1 class="texto">La Isla Efímera</h1>
+    
           <p>Despiertas en la arena húmeda de una isla paradisiaca y desconocida. No recuerdas cómo has llegado hasta allí. Te levantas desorientado, cegado por el reflejo del sol sobre el agua cristalina...</p>
           <button id="btn-comenzar">Comienza la aventura</button>
       </div>
@@ -37,7 +91,7 @@
   <section id="pantalla-modo-juego" class="pantalla">
     <div class="contenido">
       <h2>Elige tu Aventura</h2>
-      <p>¿Cómo quieres poner a prueba tus habilidades?</p>
+      <p>¿Cómo quieres jugar?</p>
       <button id="btn-modo-puntuacion">Modo Puntuación</button>
       <button id="btn-modo-tiempo">Modo Contrarreloj</button>
     </div>
@@ -144,7 +198,7 @@
   </button>
 
   <!-- Modal para Pistas Extras -->
-  <div id="modal-pista" class="modal">
+  <div id="modal-pista" class="modal game-modal">
     <div class="modal-contenido">
       <span class="cerrar" id="cerrar-modal-pista">&times;</span>
       <img id="pista-img" src="" alt="Pista extra" style="max-width: 80%; max-height: 80%; margin-bottom: 20px;">

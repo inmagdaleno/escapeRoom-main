@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2025 at 10:25 AM
+-- Generation Time: Jul 18, 2025 at 12:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,8 +34,10 @@ CREATE TABLE `partida` (
   `fecha_partida` datetime NOT NULL,
   `tiempo_empleado` int(11) NOT NULL,
   `pistas_usadas` int(1) NOT NULL,
-  `puntuacion` int(1) NOT NULL,
-  `resultado` tinyint(1) NOT NULL DEFAULT 0
+  `puntuacion_final` int(1) NOT NULL,
+  `resultado` tinyint(1) NOT NULL DEFAULT 0,
+  `modo_juego` varchar(24) DEFAULT 'puntos',
+  `tiempo_restante_final` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -58,7 +60,7 @@ CREATE TABLE `pruebas` (
 --
 
 INSERT INTO `pruebas` (`id`, `nombre`, `descripcion`, `tipo_prueba`, `solucion`, `puntuacion`) VALUES
-(1, 'mensaje', 'acertijo alfanumerico que consta de un mensaje en una botella que los jugadores deberán desencriptar siguiendo una serie de pistas ', 'alfanumerico', 'desaparece al anochecer', 100),
+(1, 'mensaje', 'acertijo alfanumerico que consta de un mensaje en una botella que los jugadores deberán desencriptar siguiendo una serie de pistas. Esta encriptado con ROT 13. De la A a la Z debe sumarse 13 cada letra', 'alfanumerico', 'reune las coordenadas', 100),
 (3, 'puzzle', 'puzzle drag&drop de un mapa que los jugadores deberan realizar lo mas rapido posible para recoger las pistas que se encuentran en el y que les serviran par resolver el gran enigma final', 'puzzle', NULL, 100),
 (4, 'sudoku', 'sudoku geometrico con numeros y formas geometricas que sustituyen a los numeros. las formas geometricas sustituyen al numero igual a su numero de lados', 'sudoku', NULL, 100),
 (5, 'final', 'En el gran enigma final tendran que utilizar las pistas encontradas en las anteriores pruebas para encontrar las coordenadas del portal que les permita abandonar la isla antes de que desaparezca', 'coordenadas', NULL, 100);
@@ -73,15 +75,22 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(60) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `fecha_registro` datetime NOT NULL DEFAULT current_timestamp(),
   `ultimo_acceso` datetime DEFAULT NULL,
-  `token` varchar(70) NOT NULL,
-  `token_recuperacion` varchar(70) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `token_recuperacion` varchar(255) NOT NULL,
   `verificado` tinyint(1) NOT NULL DEFAULT 0,
   `intentos_fallidos` int(11) NOT NULL,
   `bloqueado` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `fecha_registro`, `ultimo_acceso`, `token`, `token_recuperacion`, `verificado`, `intentos_fallidos`, `bloqueado`) VALUES
+(5, '', 'inmagdaleno@gmail.com', '$2y$10$DWusiIVXK7N7LSIgVni76ek1bk.dvIeazWVgOsXSOBDb0reFF.Jsq', '2025-07-17 10:00:52', '2025-07-17 10:01:39', '', '', 1, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -128,7 +137,7 @@ ALTER TABLE `pruebas`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
