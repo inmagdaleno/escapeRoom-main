@@ -1,0 +1,215 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('img/fondoTropical.webp');
+  background-size: cover;
+  background-position:bottom;
+  font-family: sans-serif;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  overflow: hidden;
+}
+
+h1 {
+  margin-top: 30px; 
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 10px; 
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+#outerContainer {
+  margin-top: 30px;
+  width: 540px;
+  height: 540px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('img/tableroFinal.webp');
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  filter: drop-shadow(-20px 20px 20px rgba(0, 0, 0, 0.8));
+}
+
+#tableroContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centra verticalmente la tabla dentro de tableroContainer */
+  width: 405px; /* Asegura que tableroContainer no sea más grande que la tabla */
+  height: 405px; /* Asegura que tableroContainer no sea más grande que la tabla */
+  background-image: url('img/tableroBase.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px #000;
+  width: 405px;
+  height: 405px;
+}
+
+td {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}
+
+#sudoku {
+    background-image: url('img/tableroBase.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.gold {
+  border: 4px solid gold;
+  box-sizing: border-box;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px gold; }
+  100% { box-shadow: 0 0 20px gold; }
+}
+
+.svg-symbol {
+  width: 50px;
+  height: 50px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centra verticalmente los elementos */
+  gap: 50px;
+}
+
+#dragZoneContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0; /* Revertir el margen superior */
+  margin-left: 40px;
+  justify-content: space-between; /* Distribuye el espacio verticalmente */
+  height: 540px; /* Misma altura que outerContainer para alinear */
+}
+
+#dragZoneContainer h2 {
+  margin-top: 40px; 
+  margin-bottom: 0px;
+}
+
+.drag-zone {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual ancho */
+  gap: 20px 40px; /* row-gap: 5px, column-gap: 20px */
+  height: 280px; /* Altura para 3 filas de 80px + gaps */
+  width: 200px; /* Ancho para 2 columnas de 80px + gaps */
+  justify-items: center;
+  align-items: center;
+}
+
+.draggable {
+  width: 60px;
+  height: 60px;
+  cursor: grab;
+  user-select: none;
+}
+
+.draggable .svg-symbol {
+  width: 60px;
+  height: 60px;
+}
+
+#resultado {
+  margin-top: 5px; /* Reducido para ahorrar espacio */
+  font-size: 18px;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+}
+
+#smallButtonsContainer {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+#smallButtonsContainer button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-image: url('img/madera.webp');
+  background-size: 300%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  color: #300B07; /* Para que el texto sea visible sobre la madera */
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  filter: drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.8));
+  font-weight: bold;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#smallButtonsContainer button:hover {
+  transform: scale(1.1);
+  filter: brightness(80%) drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.8));
+  color:#300B07;
+}
+
+#solveButtonContainer {
+  margin-top: 10;
+}
+
+#solveButtonContainer button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-image: url('img/madera.webp');
+  background-size: 300%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  color: #300B07; 
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  filter: drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.8));
+  font-weight: bold;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#solveButtonContainer button:hover {
+  transform: scale(1.1);
+  filter: brightness(80%) drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.8));
+  color: #300B07;
+}
+
+.success {
+  animation: blink-green 1s 3;
+}
+
+@keyframes blink-green {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(0, 255, 0, 0.4); }
+}
+
+.error {
+  animation: blink-red 0.5s 3;
+}
+
+@keyframes blink-red {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(255, 0, 0, 0.5); }
+}
